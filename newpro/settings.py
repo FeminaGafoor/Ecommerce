@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'shop',
     'account',
     'cart',
-    'outgoing'
+    'outgoing',
+    'for_admin',
     
    
     
