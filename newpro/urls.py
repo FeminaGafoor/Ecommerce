@@ -23,11 +23,12 @@ urlpatterns = [
     path('categories',include('categories.urls')),
     path('blog',include('blog.urls')),
     path('aboutus',include('aboutus.urls')),
-    path('contact',include('contact.urls')),
+    path('contact',include('contact.urls')),    
     path('shop',include('shop.urls')),
     path('account',include('account.urls')),
     path('cart',include('cart.urls')),
     path('outgoing',include('outgoing.urls')),
-    path('for_admin',include('for_admin.urls'))
+    path('for_admin/',include('for_admin.urls')),
+    
     
 ]

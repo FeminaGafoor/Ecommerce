@@ -25,10 +25,6 @@ def user_login(request):
             messages.error(request,'Invalid Credentials')
             return redirect('account:user_login')
 
-        
-        
-    
-   
     return render(request,'user/login.html')
 
 

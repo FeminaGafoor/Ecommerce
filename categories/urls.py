@@ -4,7 +4,9 @@ from . import views
 app_name='categories'
 
 urlpatterns = [
-    path('categories/',views.categories,name='categories'),
-    path('mens/',views.mens,name='mens'),
-    path('kids/',views.kids,name='kids'),
+
+    path('category_manage/',views.category_manage,name='category_manage'),
+    path('add_categories/',views.add_categories,name='add_categories'),
+   
+   
 ]
