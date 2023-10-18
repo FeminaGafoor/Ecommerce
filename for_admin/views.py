@@ -3,38 +3,37 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-def ad_login(request):
-    if not request.user.is_superuser:
-        return render(request,'admini/index.html')
-        
-    if request.method == 'POST':    
-        username = request.POST['username'] 
-        password = request.POST['password'] 
-        
-        try:
-            user_obj = User.objects.get(username = username)
 
-            if  user_obj.is_superuser:
-                login(request , user_obj)
+def ad_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+     
+        
+        # Authenticate user
+        user_obj = authenticate(request, username=username, password=password)
+        
+
+        if user_obj is not None:
+            if user_obj.is_superuser:
+                # Login the user
+                login(request, user_obj)
                 return redirect('for_admin:admin_panel')
             else:
-                print('the else is case is working')
-                messages.info(request, 'Invalid Username')
-                return render(request,'admini/ad_login.html')
-            
-            
-        except ObjectDoesNotExist:
-            print('User not found')
-            messages.info(request, 'Invalid Username')
-            return render(request, 'admini/ad_login.html')
-        
-    return render(request,'admini/ad_login.html')
+                messages.info(request, 'User is not a superuser.')
+        else:
+            messages.info(request, 'Invalid credentials.')
+
+    # If not a POST request or authentication failed, render the login form
+    return render(request, 'admini/ad_login.html')
 
     
 
+@login_required(login_url='for_admin:ad_login')
 
 def admin_panel(request):
     
@@ -56,6 +55,7 @@ def user_manage(request):
         'users':user
     }
     return render(request,'admini/user_manage.html',context )
+
 
 def user_block(requset,user_id):
     

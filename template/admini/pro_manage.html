@@ -118,13 +118,96 @@
       <!-- Content -->
 
       <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User Management</span></h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Product Management</span></h4>
 
         <hr class="my-5" />
 
 
 
-
+    <!---- Add button to trigger the add modal ---->
+    <a href="{% url 'items:add_product'%}" type="button" class="btn btn-primary" id="addProductButton"> 
+      Add Product
+    </a>
+ 
+ 
+            <div class="card">
+              <h5 class="card-header">Products</h5>
+              <div class="table-responsive text-nowrap">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                  <tbody class="table-border-bottom-0">
+                  {% for item in product %}
+              
+    
+                    <tr>
+                      <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>{{ forloop.counter }}</strong></td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.brand }}</td>
+                      <td>{{item.category }}</td>
+                      
+                      <td>
+                        {% with p_image=item.ProductImage_set.first %}
+                        {% if p_image %}
+                        <img style="width:50px" src="{{ p_image.image.url }}" alt="image">
+                        {% endif %}
+                        {% endwith %}
+                      </td>
+                      
+                      
+                      <td>{{item.price}}</td>
+                      <td>
+                        {% for size in item.size.all %}
+                        {{size.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      </td>
+                      <td>{% for size in item.size.all %}
+                        {{item.colors}}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      </td>
+                      <td>{{item.stock}}</td>
+                      
+                      
+                      <!-- <td><span class="badge bg-label-success me-1"></span></td> -->
+                      <td><span class="badge bg-label-success me-1"></span>
+                        <div class="dropdown">
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editModal{{ forloop.counter }}">
+                              <i class="bx bx-edit-alt me-1"></i> Edit
+                            </a>
+                            
+                            
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ forloop.counter }}">
+                              <i class="bx bx-trash me-1"></i> Delete</a
+                            >
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!--/ Hoverable Table rows -->
 
 
 
