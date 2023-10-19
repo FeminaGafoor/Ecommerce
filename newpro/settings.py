@@ -89,8 +89,8 @@ WSGI_APPLICATION = 'newpro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'postgres',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce',
         'USER': 'postgres',
         'PASSWORD' : 'tiger',
         'HOST' : 'localhost',

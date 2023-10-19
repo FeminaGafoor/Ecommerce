@@ -1,6 +1,8 @@
+from decimal import Decimal, InvalidOperation
+from functools import reduce
 from django.shortcuts import render,redirect, get_object_or_404
 from items.models import Category
-from .models import Brand, Color, Products ,Size
+from .models import Brand, Color, ProductImage, Products ,Size
 
 from django.contrib import messages
 
@@ -102,7 +104,7 @@ def delete_categories(request,category_id):
     
 def brand(request):
     brand = Brand.objects.all()
-    print(brand)
+    
     context = {
         'brand':brand
     }
@@ -117,7 +119,7 @@ def add_brand(request):
             brand_name   = request.POST.get('name')
             brand_image = request.FILES.get('image')
             # validating whether the field is empty
-            
+          
             if brand_name.strip() == '':
                 messages.error(request, 'field is empty!')
                 return redirect('items:add_brand')
@@ -133,9 +135,11 @@ def add_brand(request):
                 new_brand = Brand.objects.create(brand_name=brand_name,brand_image=brand_image)
                 
                 new_brand.save()
+                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                print(brand_image)
                 messages.success(request, 'Brands are added successfully')
                 return redirect('items:brand')
-    
+        
     else:
         return redirect('for_admin:ad_login')    
        
@@ -358,78 +362,114 @@ def delete_size(request,id):
     else:
         return redirect('for_admin:ad_login')
     
+
+# PRODUCT-MANAGE-----------------------------------------------------------------------------------------
     
     
 def product_manage(request):
     products = Products.objects.all()
-    print(products)
-    context = {
-        'product' : products
-        
-    }
+    category=Category.objects.all()
+    brand=Brand.objects.all()
+    context={
+        'product' :products,
+        'brand':brand,
+        'category':category,
+        }
     return render(request,'admini/pro_manage.html',context)
 
 
-def add_product(request):
+def add_product(request):  
+            
     if request.user.is_superuser:
         category=Category.objects.all()
         brand=Brand.objects.all()
-        size=Size.objects.all()
-        color=Color.objects.all()
-        context={   
-            'category':category,
-            'brand':brand,
-            'size':size,
-            'color':color
-        }
+    
         if request.method == "POST":
-           
             name = request.POST['name']
             description = request.POST['description']
             brand_name = request.POST.get('brand')
             category_name = request.POST.get('category')
-            color = request.POST.getlist('color')
-            size = request.POST.getlist('size')
-            price = request.POST['price']
-            stock = request.POST['stock']
-            images = request.POST.FILES.getlist('image')
+           
+            brand_instance = Brand.objects.get(brand_name = brand_name)
+            category_instance = Category.objects.get(name = category_name)
             
-            if not name or not description or not brand_name or not category_name or not color or not size or not price or not stock:
-                messages.error(request, 'Fields cannot be empty')
-                return redirect('items:add_product')
-            
-            else:
-                brand, created = Brand.objects.get_or_create(brand_name=brand_name)
-                category, created = Category.objects.get_or_create(category_name=category_name)
-                
-                product = Products.objects.create(
-                    name=name,
-                    description=description,
-                    brand=brand,
-                    category=category,
-                    price=price,
-                    stock=stock
-                )
-                
-                product.colors.set(Color.objects.filter(id__in=color))
-                product.size.set(Size.objects.filter(id__in=size))
-                product.save()
-                
-            for image in images:
-                print("image to save", image)
-                product_image = product_image(product=product,image=image)
-                print("image to save:", product_image)
-                product_image.save()
-                
+            product = Products.objects.create(
+                name=name,
+                description=description,
+                brand=brand_instance,
+                category=category_instance,
+            )
+            product.save()
+            messages.success(request, 'Product added successfully.')
             return redirect('items:product_manage')
-        
-        else:
-            return render(request, 'admini/product/add_pro.html',context)
-                
-            
+
+        context={
+            'brand':brand,
+            'category':category,
+           }
+        return render(request, 'admini/product/add_pro.html',context)
+ 
     else:   
         return redirect('for_admin:ad_login')
     
     
     
+def edit_product(request,product_id): 
+    
+    if request.user.is_superuser:
+
+        
+        if request.method == 'POST':
+            name = request.POST.get('edit_name')
+            description = request.POST.get('edit_description')
+            brand = request.POST.get('edit_brand')
+            category_name = request.POST.get('edit_category')
+            
+            
+             #---validate the form data-----
+
+            if name.strip() == "":
+                messages.error(request,"Field is empty!")
+                return redirect('items:product_manage')
+            elif Products.objects.filter(name=name).exclude(id=product_id).exists():
+                messages.error(request, 'The product name is already taken')
+                return redirect('items:product_manage')
+            elif description.strip() == '':
+                messages.error(request, 'Description is not given!')
+                return redirect('items:product_manage')
+            elif brand.strip() == '':
+                messages.error(request, 'Brand is not given!')
+                return redirect('items:product_manage')
+            elif category_name.strip() == '':
+                messages.error(request, 'Category is not given!')
+                return redirect('items:product_manage')
+            
+             # Create an instance of Brand
+            brand_instance = Brand.objects.get(brand_name=brand)
+             # Create an instance of category
+            category_instance = Category.objects.get(name = category_name)
+            
+            update = get_object_or_404(Products,id=product_id)
+            update.name = name
+            update.description = description
+            update.brand = brand_instance
+            update.category = category_instance
+        
+            update.save()
+            messages.success(request, 'Product updated successfully')
+            return redirect('items:product_manage')
+        
+        
+        
+
+        return render(request, 'admini/pro_manage.html')
+        
+    else:
+        return redirect('for_admin:ad_login')
    
+    
+            
+def delete_product(request,product_id): 
+    
+    
+    return redirect('items:product_manage')

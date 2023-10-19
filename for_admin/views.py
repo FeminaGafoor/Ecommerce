@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.cache import cache_control
+
 
 # Create your views here.
 
@@ -32,9 +32,8 @@ def ad_login(request):
     return render(request, 'admini/ad_login.html')
 
     
-
+@cache_control(no_store=True,no_cache=True)
 @login_required(login_url='for_admin:ad_login')
-
 def admin_panel(request):
     
     if not request.user.is_superuser:
@@ -45,6 +44,8 @@ def admin_panel(request):
 
 
 def ad_logout(request):
+    logout(request)
+    
     return render(request,'admini/ad_login.html')
     
 
@@ -55,7 +56,6 @@ def user_manage(request):
         'users':user
     }
     return render(request,'admini/user_manage.html',context )
-
 
 def user_block(requset,user_id):
     

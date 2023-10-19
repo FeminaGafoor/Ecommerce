@@ -122,24 +122,24 @@
 
         <hr class="my-5" />
 
+<!-- <form action="{% url 'items:add_product' %}" method="POST">
+  {% csrf_token %}
+<input type="text">
+<input type="text">
+<button type="submit">add</button>
+</form> -->
 
 
-
-<!-- Form controls -->
-<form id="formAuthentication" class="mb-3" method="POST" action="{% url 'items:add_product' %}">
+<!-- Form controls --> 
+ <form id="formAuthentication" class="mb-3" method="POST" action="{% url 'items:add_product' %}" enctype="multipart/form-data">
+  {% csrf_token %}
 <div class="col-md-8">
     <div class="card mb-6">
       <h5 class="card-header">Add Product</h5>
       <div class="card-body">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Product Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            name="name"
-            placeholder="product name"
-          />
+          <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="product name"/>
         </div>
         <div>
             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
@@ -150,8 +150,8 @@
             <label for="exampleFormControlInput1" class="form-label">Brand</label>
             <select name="brand" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                 <option selected>Open this select brand</option>
-                {% for i in brand %}
-                <option value="1">{{ i.brand_name }}</option>
+                {% for b in brand %}
+                <option value="{{ b.brand_name }}">{{ b.brand_name }}</option>
                 {% endfor %}
               </select>
           </div>
@@ -160,54 +160,18 @@
           <label for="exampleFormControlSelect1" class="form-label">Category</label>
           <select name="category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
             <option selected>Open this select category</option>
-            {% for i in category %}
-            <option value="1">{{ i.name }}</option>
+            {% for c in category %}
+            <option value="{{ c.name }}">{{ c.name }}</option>
             {% endfor %}
           </select>
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Price</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            name="price"
-            placeholder="price"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlSelect2" class="form-label">Size</label>
-          <select name="color" multiple class="form-select" id="exampleFormControlSelect2" aria-label="Multiple select example">
-              {% for i in size %}
-              <option value="" selected>{{ i.name }}</option>
-             {% endfor %}
-          </select>
-      </div>
-        <div class="mb-3">
-            <label for="exampleFormControlSelect2" class="form-label">Colors</label>
-            <select name="color" multiple class="form-select" id="exampleFormControlSelect2" aria-label="Multiple select example">
-                {% for i in color %}
-                <option value="" selected>{{ i.name }}</option>
-               {% endfor %}
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Stock</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
-              name="stock"
-              placeholder=""
-            />
-          </div>
-          
-          <a href="{% url 'items:product_manage'%}" type="button" class="btn btn-primary" id="addProductButton"> 
+         <button type="submit" class="btn btn-primary" id="addProductButton"> 
             Add Product
-          </a>
+          </button>
           
       </div>
       
+
     </div>
     
   </div>
@@ -215,26 +179,15 @@
         <div id="imageContainer" style="width: 15rem;" multiple accept="image/*">
            
         </div>
-        <div class="custom-file mt-3 mb-3">
-            <input id="fileInput" name="image" type="file" accept="image/png, image/jpeg, image/svg, image/avif, image/WEBP" style="display: none;" multiple onchange="displayImages(this)" multiple accept="image/*">
-            <label for="fileInput" class="btn btn-primary btn-block mx-auto">ADD IMAGES</label>
-        </div>
-        
-      
-        <div id="errorAlert" class="alert alert-danger mt-3" style="display: none;">
-            Error uploading images. You can upload only three images.
-        </div>
+       
 
 </form>
-
-
-
-
 
         <hr class="my-5" />
 
         
     </div>
+    
     <!-- / Content -->
 
     <!-- Footer -->

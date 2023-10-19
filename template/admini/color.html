@@ -143,12 +143,12 @@
         <hr class="my-5" />
 
 
-    <!---- Add button to trigger the add modal ---->
+
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
       Add Color
     </button>
 
-{% if messages%}
+  {% if messages%}
     <div>
         {% for message in messages %}
             <div class="message-container {% if message.tags == 'success' %}success{% endif %}">
@@ -156,7 +156,7 @@
             </div>
         {% endfor %}
     </div>
-{% endif %}
+  {% endif %}
             <!-- Hoverable Table rows -->
             <div class="card">
               <h5 class="card-header">Color</h5>
@@ -211,7 +211,7 @@
 
 
 
-<!------- Add Modal ----------->
+
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -241,7 +241,6 @@
 
 
 
-<!-- --------Edit modal------->
 
 {% for item in color %} 
 <!-- Edit Modal for {{ item.name }} -->
@@ -253,13 +252,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Your edit form goes here--->
+
       <form method="POST" action="{% url 'items:edit_color' item.id %}" enctype="multipart/form-data"> 
 
           {% csrf_token %}
           <input type="hidden" name="color_id" value="{{ item.id }}"> 
 
-          <!-- Include form fields for editing -->
+ 
           <div class="mb-3">
             <label for="edit_name{{ forloop.counter }}" class="form-label">Name</label>
             <input type="text" class="form-control" id="edit_name{{ forloop.counter }}" name="edit_name" value="{{ item.name }}" required>
@@ -273,7 +272,7 @@
 </div>
 {% endfor %} 
 
-<!-- --------Delete Modal------->
+
 {% for item in color %} 
   <!-- Delete Modal for {{ item.name }} -->
   <div class="modal fade" id="deleteModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ forloop.counter }}" aria-hidden="true">
