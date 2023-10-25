@@ -2,18 +2,6 @@
 
 <!DOCTYPE html>
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style customizer-hide"
@@ -141,7 +129,7 @@
               <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
 
-             
+              <!-- /Form -->
 
               <form id="formAuthentication" action="{% url 'for_admin:ad_login' %}" class="mb-3" method="POST">
                 {% csrf_token %}
@@ -185,8 +173,7 @@
                   <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
               </form>
-              
-               
+    <!-- /Error Message -->          
     <div>
       {% for message in messages %}
       {{message}}

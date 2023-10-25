@@ -3,9 +3,9 @@ from django.db import models
 # Create your models here.
 
 class Category(models.Model):
-    name = models.CharField( max_length=50, blank=True, default="", null=True)
+    name = models.CharField( max_length=255, blank=True, default="", null=True)
     image = models.ImageField( upload_to='images/',height_field=None, width_field=None, max_length=None,default=True)
-    category_description = models.CharField( max_length=50, blank=True, default=True, null=True)
+    category_description = models.CharField( max_length=100, blank=True, default=True, null=True)
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     
@@ -24,7 +24,7 @@ class Brand(models.Model):
     
 
 class Color(models.Model):
-    name = models.CharField(max_length= 10)
+    name = models.CharField(max_length= 50)
     
 
 class Size(models.Model):
@@ -34,6 +34,7 @@ class Size(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='product_images/',blank=True)
     brand = models.ForeignKey(Brand, blank=True, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, blank=True,null=True, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now_add=True,null=True)
@@ -43,7 +44,7 @@ class Products(models.Model):
     
     def __str__(self):
         return self.name
-    
+
 
     
 class Product_variant(models.Model):
@@ -59,10 +60,10 @@ class Product_variant(models.Model):
        
        
 class ProductImage(models.Model):
-    variant = models.ForeignKey(Product_variant,null=True, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product_images/',blank=True)
+    pro_variant = models.ForeignKey(Product_variant,null=True, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to='variantproduct_images/',blank=True)
     
     def __str__(self):
-        return str(self.variant) 
+        return str(self.pro_variant) 
     
 

@@ -24,7 +24,10 @@ urlpatterns = [
     path('product_manage/',views.product_manage,name='product_manage'),
     path('add_product/',views.add_product,name='add_product'),
     path('edit_product/<int:product_id>',views.edit_product,name='edit_product'),
-    path('delete_product/<int:id>',views.delete_product,name='delete_product'),
-   
+    path('delete_product/<int:product_id>',views.delete_product,name='delete_product'),
+    path('variant/',views.variant,name='variant'),
+    path('add_variant/',views.add_variant,name='add_variant'),
+    path('edit_variant/<int:variant_id>',views.edit_variant,name='edit_variant'),
+    path('delete_variant/<int:variant_id>',views.delete_variant,name='delete_variant'),
    
 ]

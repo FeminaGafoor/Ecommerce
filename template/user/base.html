@@ -84,6 +84,7 @@
                         <ul class="top-menu">
                             <li><a title="Login" href="{% url 'account:user_login' %}">Login</a></li>
                             <li><a title="Register" href="{% url 'account:register' %}">Register</a></li>
+                            <li><a title="Register" href="{% url 'account:user_logout' %}">Logout</a></li>
                         </ul>
                     </div>
                 </div><!-- container /- -->
@@ -179,12 +180,12 @@
                         </div>
                         <div class="navbar-collapse collapse" id="navbar">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a title="Home" href="{% url 'home:home' %}">Home</a></li>
+                                <li><a title="Home" href="{% url 'home:home' %}">Home</a></li>
                                 
                                 <!-- <li class="dropdown"> -->
                                     <!-- <a title="Shop" href="#" class="dropdown-toggle" data-toggle="dropdown">Shop</a> -->
                                     <!-- <ul class="dropdown-menu">
-                                        <li><a title="product" href="{% url 'shop:product' %}">product</a></li>
+                                        
                                         <li><a title="Single product" href="04_single_product.html">single product</a></li>
                                         
                                     </ul> -->
@@ -199,7 +200,7 @@
 <!--                             
                                 </li> -->
                                 <li><a title="Shop" href="{% url 'shop:shop' %}">Shop</a></li>
-                                <li><a title="Categories" href="#">Categories</a></li>	                           
+                                <li><a title="Categories" href="{% url 'shop:category' %}">Categories</a></li>	                           
                                 <li><a title="Blog" href="{% url 'blog:blog' %}">Blog</a></li>								
                                 <li><a title="About Us" href="{% url 'aboutus:aboutus' %}">About Us</a></li>
                                 

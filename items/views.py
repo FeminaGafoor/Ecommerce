@@ -1,15 +1,18 @@
 from decimal import Decimal, InvalidOperation
 from functools import reduce
+from tkinter import Image
 from django.shortcuts import render,redirect, get_object_or_404
 from items.models import Category
-from .models import Brand, Color, ProductImage, Products ,Size
+from .models import Brand, Color, Product_variant, ProductImage, Products ,Size
 
 from django.contrib import messages
 
 # Create your views here.
 
 
-#CATAGORY_MANAGE---------------------------------------------------------------------------
+#CATAGORY_MANAGE-----------------------------------------------------------------------
+
+
 
 def category_manage(request):
     category = Category.objects.all()
@@ -18,6 +21,11 @@ def category_manage(request):
         'category':category
     }
     return render(request,'admini/category_manage.html',context)
+
+
+#ADD-CATAGORY---------------------------------------------------------------------------
+
+
 
 def add_categories(request):
     if request.user.is_superuser:
@@ -50,6 +58,11 @@ def add_categories(request):
     
     else:
         return redirect('for_admin:ad_login')    
+    
+
+
+#EDIT-CATAGORY---------------------------------------------------------------------------
+    
     
     
 def edit_categories(request,category_id):
@@ -90,6 +103,9 @@ def edit_categories(request,category_id):
         return redirect('for_admin:ad_login')
 
 
+#DELETE-CATAGORY---------------------------------------------------------------------------
+
+
 
 def delete_categories(request,category_id):
     if request.user.is_superuser:
@@ -98,6 +114,8 @@ def delete_categories(request,category_id):
         return redirect('items:category_manage')
     else:
         return redirect('for_admin:ad_login')
+  
+  
   
 #BRAND----------------------------------------------------------------------------------  
   
@@ -111,6 +129,9 @@ def brand(request):
     return render(request,'admini/brand.html',context)
     
   
+
+#ADD-BRAND---------------------------------------------------------------------------
+
 
 
 def add_brand(request):
@@ -135,13 +156,18 @@ def add_brand(request):
                 new_brand = Brand.objects.create(brand_name=brand_name,brand_image=brand_image)
                 
                 new_brand.save()
-                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+               
                 print(brand_image)
                 messages.success(request, 'Brands are added successfully')
                 return redirect('items:brand')
         
     else:
         return redirect('for_admin:ad_login')    
+       
+
+
+#EDIT-BRAND---------------------------------------------------------------------------
+       
        
        
 def edit_brand(request,brand_id):
@@ -179,6 +205,11 @@ def edit_brand(request,brand_id):
     else:
         return redirect('for_admin:ad_login')
     
+ 
+ 
+#DELETE-BRAND---------------------------------------------------------------------------
+    
+    
     
 def delete_brand(request,brand_id):
     if request.user.is_superuser:
@@ -195,15 +226,16 @@ def delete_brand(request,brand_id):
     
 def color(request):
     color = Color.objects.all()
-    print(color)
+    
     context = {
         'color':color
     }
+    
     return render(request,'admini/color.html',context)
 
 
 
-    
+#ADD-COLOR-----------------------------------------------------------------------------------  
     
 
 def add_color(request):
@@ -233,6 +265,8 @@ def add_color(request):
     else:
         return redirect('for_admin:ad_login')     
     
+    
+#EDIT-COLOR-----------------------------------------------------------------------------------    
     
     
     
@@ -267,6 +301,10 @@ def edit_color(request,color_id):
     else:
         return redirect('for_admin:ad_login')
     
+ 
+ 
+#DELETE-COLOR-----------------------------------------------------------------------------------    
+    
     
     
 def delete_color(request,color_id):
@@ -290,6 +328,12 @@ def size(request):
         
     }
     return render(request,'admini/size.html',context)
+
+
+
+
+#ADD-SIZE-----------------------------------------------------------------------------------  
+
 
 
 def add_size(request):
@@ -318,8 +362,12 @@ def add_size(request):
             # Render the form for a GET request
             return render(request, 'admini/size.html')
     else:
-        return redirect('for_admin:ad_login')     
+        return redirect('for_admin:ad_login')  
     
+   
+    
+#EDIT-SIZE-----------------------------------------------------------------------------------  
+
 
 
 def edit_size(request,id):
@@ -353,6 +401,8 @@ def edit_size(request,id):
     
     
     
+#DELETE-SIZE-----------------------------------------------------------------------------------      
+    
     
 def delete_size(request,id):
     if request.user.is_superuser:
@@ -370,12 +420,19 @@ def product_manage(request):
     products = Products.objects.all()
     category=Category.objects.all()
     brand=Brand.objects.all()
+    for item in products:
+        print(item.image.url)
     context={
         'product' :products,
         'brand':brand,
         'category':category,
         }
     return render(request,'admini/pro_manage.html',context)
+
+
+
+# ADD-PRODUCT-----------------------------------------------------------------------------------------
+
 
 
 def add_product(request):  
@@ -387,17 +444,23 @@ def add_product(request):
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
+            product_image = request.FILES.get('image')
             brand_name = request.POST.get('brand')
             category_name = request.POST.get('category')
-           
+            
+            if not product_image:
+                messages.error(request, 'Image is not uploaded!')
+                return redirect('items:product_manage')
+            
             brand_instance = Brand.objects.get(brand_name = brand_name)
             category_instance = Category.objects.get(name = category_name)
             
             product = Products.objects.create(
-                name=name,
-                description=description,
-                brand=brand_instance,
-                category=category_instance,
+                name = name,
+                description = description,
+                image = product_image,
+                brand = brand_instance,
+                category = category_instance,
             )
             product.save()
             messages.success(request, 'Product added successfully.')
@@ -413,6 +476,8 @@ def add_product(request):
         return redirect('for_admin:ad_login')
     
     
+ # EDIT-PRODUCT-----------------------------------------------------------------------------------------
+   
     
 def edit_product(request,product_id): 
     
@@ -422,6 +487,7 @@ def edit_product(request,product_id):
         if request.method == 'POST':
             name = request.POST.get('edit_name')
             description = request.POST.get('edit_description')
+            product_image = request.FILES.get('edit_image')
             brand = request.POST.get('edit_brand')
             category_name = request.POST.get('edit_category')
             
@@ -436,6 +502,9 @@ def edit_product(request,product_id):
                 return redirect('items:product_manage')
             elif description.strip() == '':
                 messages.error(request, 'Description is not given!')
+                return redirect('items:product_manage')
+            elif not product_image:
+                messages.error(request, 'Image is not uploaded!')
                 return redirect('items:product_manage')
             elif brand.strip() == '':
                 messages.error(request, 'Brand is not given!')
@@ -452,6 +521,7 @@ def edit_product(request,product_id):
             update = get_object_or_404(Products,id=product_id)
             update.name = name
             update.description = description
+            update.image = product_image
             update.brand = brand_instance
             update.category = category_instance
         
@@ -466,10 +536,173 @@ def edit_product(request,product_id):
         
     else:
         return redirect('for_admin:ad_login')
+    
    
+# DELETE-PRODUCT-----------------------------------------------------------------------------------------
     
+def delete_product(request, product_id):
+    if request.user.is_superuser:
+        product = get_object_or_404(Products, id=product_id)  # Use `product_id` here, not `id`
+        product.delete()
+        return redirect('items:product_manage')
+    else:
+        return redirect('for_admin:ad_login')
+    
+   
+
+#VARIANT-----------------------------------------------------------------------------------  
+
+
+def variant(request):
+    variant = Product_variant.objects.all()
+    colors = Color.objects.all()
+    products = Products.objects.all()
+    sizes = Size.objects.all()
+    print(sizes)
+    context = {
+        'variant' : variant,
+        'colors': colors,
+        'products': products,
+        'sizes': sizes,
+        
+    }
+    return render(request,'admini/variant.html',context)
+
+
+def add_variant(request):
+    if request.user.is_superuser:
+       
+        if request.method == "POST":
             
-def delete_product(request,product_id): 
+            product_name = request.POST.get('product')
+            price = request.POST['price']
+            stock = request.POST.get('stock')
+            images = request.FILES.getlist('images')
+            
+            selected_color_ids = request.POST.getlist('color')
+            selected_size_ids = request.POST.getlist('size')
+            
+            # Validate the form data
+            if not product_name:
+                messages.error(request, 'Product name is required.')
+            if not price:
+                messages.error(request, 'Price is required.')
+            if not selected_color_ids:
+                messages.error(request, 'Select at least one color.')
+            if not selected_size_ids:
+                messages.error(request, 'Select at least one size.')
+
+            # Check if there are any validation errors
+            if messages.get_messages(request):
+                return redirect('items:variant')  # Redirect back to the form page
+
+            try:
+                product_instance = Products.objects.get(name=product_name)
+            except Products.DoesNotExist:
+                # Handle the case when the product doesn't exist
+                messages.error(request, 'Product does not exist.')
+                return redirect('items:variant')
+
+            
+            
+            
+            product_variant = Product_variant.objects.create(
+                        product=product_instance,
+                        price=price,
+                        stock=stock,
+                    )
+            for i in images:
+                image=ProductImage(pro_variant= product_variant,images=i)
+                image.save()
+               
+            
+             # Add the selected colors and sizes to the many-to-many fields
+            product_variant.colors.set(selected_color_ids)
+            product_variant.size.set(selected_size_ids)
+        
+            product_variant.save()
+            messages.success(request, 'Product added successfully.')
+            return redirect('items:variant')
     
     
-    return redirect('items:product_manage')
+    else:   
+        return redirect('for_admin:ad_login')
+    
+    
+    
+        
+
+def edit_variant(request, variant_id):
+    if request.user.is_superuser:
+        try:
+            variant = Product_variant.objects.get(id=variant_id)
+        except Product_variant.DoesNotExist:
+            # Handle the case when the variant doesn't exist
+            messages.error(request, 'Variant does not exist.')
+            return redirect('items:variant')
+
+        if request.method == 'POST':
+            product_name = request.POST.get('product')
+            price = request.POST['price']
+            stock = request.POST.get('stock')
+            selected_color_ids = request.POST.getlist('color')
+            selected_size_ids = request.POST.getlist('size')
+
+            # Validate the form data
+            if not product_name:
+                messages.error(request, 'Product name is required.')
+            elif not price:
+                messages.error(request, 'Price is required.')
+            elif not selected_color_ids:
+                messages.error(request, 'Select at least one color.')
+            elif not selected_size_ids:
+                messages.error(request, 'Select at least one size.')
+
+            # Check if there are any validation errors
+            if messages.get_messages(request):
+                return redirect('items:edit_variant', variant_id=variant_id)
+
+            try:
+                product_instance = Products.objects.get(name=product_name)
+            except Products.DoesNotExist:
+                # Handle the case when the product doesn't exist
+                messages.error(request, 'Product does not exist.')
+                return redirect('items:edit_variant', variant_id=variant_id)
+
+            # Update the variant fields
+            variant.product = product_instance
+            variant.price = price
+            variant.stock = stock
+            variant.colors.set(selected_color_ids)
+            variant.size.set(selected_size_ids)
+
+            variant.save()
+            messages.success(request, 'Variant updated successfully.')
+            return redirect('items:variant')
+
+        # If it's a GET request, render the edit form
+        colors = Color.objects.all()
+        sizes = Size.objects.all()
+        products = Products.objects.all()
+
+        context = {
+            'variant': variant,
+            'colors': colors,
+            'sizes': sizes,
+            'products': products,
+        }
+        return render(request, 'admini/variant.html', context)
+
+    else:
+        return redirect('for_admin:ad_login')
+
+
+
+def delete_variant(request,variant_id): 
+    if request.user.is_superuser:
+        variant = Product_variant.objects.get(id=variant_id)
+        variant.delete()
+        return redirect('items:variant')
+    else:
+        return redirect('for_admin:ad_login')
+        

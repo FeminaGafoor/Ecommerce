@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="page-header ow-bottom-padding categories">
-			<h3>Women's </h3>
+			<h3>Shop</h3>
 			<p>786+ Products</p>
 		</div><!-- Section Header /- -->
 	</div><!-- container /- -->
@@ -38,12 +38,7 @@
 						<label>to </label>
 						<input type="text" id="amount2">
 					
-						<!--select class="form-control minimal">
-							<option value="selected">Dollar</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-						</select--> 
+					
 					</div>
 				</div>
 
@@ -52,31 +47,13 @@
 						<div class="col-md-4 col-sm-4 no-padding">
 							<div class="product-search-option">
 								<div class="from-group">
-									<!-- <select class="form-control minimal">
-										<option value="selected">Categories</option>
-										<option value="men">Men</option>
-										<option value="kids">Kids</option>
-										<!-- <option value="">3</option> -->
-									<!-- </select>  -->
-									<!-- <script>
-										document.getElementById('categoryDropdown').addEventListener('change', function() {
-											var selectedOption = this.options[this.selectedIndex].value;
-											
-											// Redirect based on the selected option
-											if (selectedOption === "men") {
-												window.location.href = "mens.html";
-											} else if (selectedOption === "kids") {
-												window.location.href = "kids.html";
-											} else {
-												// Handle the default case or other options if needed
-											}
-										});
-									</script> --> 
 									
 									<select class="form-control minimal" id="categoryDropdown">
 										<option value="selected">Categories</option>
-										<option value="men" data-url="{% url 'categories:mens' %}">Mens</option>
-										<option value="kids" data-url="{% url 'categories:kids' %}">Kids</option>
+										<option value="kids" data-url="{% url 'shop:womens' %}">Women</option>
+										<option value="men" data-url="{% url 'shop:mens' %}">Mens</option>
+										<option value="kids" data-url="{% url 'shop:kids' %}">Kids</option>
+										
 									</select>
 									
 									<script>
@@ -152,13 +129,13 @@
 					</form>
 				</div>
 			</div>
-			<div class="pillbox">
-				<a title="Close Icon" href="#">Ethenic Wear <i class="fa fa-close"></i></a>
+			<!-- <div class="pillbox"> -->
+				<!-- <a title="Close Icon" href="#">Ethenic Wear <i class="fa fa-close"></i></a>
 				<a title="Close Icon" href="#">Gucchi <i class="fa fa-close"></i></a>
 				<a title="Close Icon" href="#">White <i class="fa fa-close"></i></a>
 				<a title="Close Icon" href="#">34-54 Size <i class="fa fa-close"></i></a>
-				<a title="Close Icon" href="#">clear All search tags</a>
-			</div>
+				<a title="Close Icon" href="#">clear All search tags</a> -->
+			<!-- </div> -->
 		</div>
 	</div>
 	<!-- Product Filter /- -->
@@ -168,307 +145,33 @@
 		<!-- container -->
 		<div class="container">			
 			<div class="category-box-main product-box-main">
+				{% for i in product %}
 				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
+					
 					<div class="category-box product-box">
+						
 						<span class="sale">sales</span>
+						
 						<div class="inner-product">
-							<img src="images/featured/featured-1.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-1.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="#" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<div class="inner-product">
-							<img src="images/featured/featured-2.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-2.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="#" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<span class="sale">sales</span>
-						<div class="inner-product">
-							<img src="images/featured/featured-3.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-3.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="#" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<div class="inner-product">
-							<img src="images/featured/featured-4.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="" href="images/featured/featured-4.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-			</div>
+							
+						
+							
+							<!-- <a href="{% url 'shop:product'  product_id=i.id %}"> -->
+							<img src="{{ i.image.url }}" alt="featured-img" style="width: 292px; height: 294px;" />
+						    <!-- </a> -->
+							
 
-			<div class="category-box-main product-box-main">
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<span class="sale">sales</span>
-						<div class="inner-product">
-							<img src="images/featured/featured-5.jpg" alt="featured-img"/>
+
 							<div class="product-box-inner">
 								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-5.jpg"><i class="fa fa-eye"></i></a></li>
+									<li><a title="Eye Icon" href="{{ i.image.url }}"><i class="fa fa-eye"></i></a></li>
 									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<div class="inner-product">
-							<img src="images/featured/featured-6.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-6.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<span class="sale">sales</span>
-						<div class="inner-product">
-							<img src="images/featured/featured-7.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-7.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<div class="inner-product">
-							<img src="images/featured/featured-8.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-8.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart ICon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-			</div>
-			
-			<div class="category-box-main product-box-main new-categories">
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<span class="sale">sales</span>
-						<div class="inner-product">
-							<img src="images/featured/featured-1.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-1.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<div class="inner-product">
-							<img src="images/featured/featured-2.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye Icon" href="images/featured/featured-2.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart Icon" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<span class="sale">sales</span>
-						<div class="inner-product">
-							<img src="images/featured/featured-3.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye" href="images/featured/featured-3.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart" href="#"><i class="fa fa-heart"></i></a></li>
-								</ul>
-								<a title="Add to cart" href="{% url 'cart:cart' %}" class="btn">add to cart</a>
-							</div>
-						</div>
-					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
-					<ul class="star">
-						<li>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o"></i>
-						<i class="fa fa-star-o"></i>
-						</li>
-					</ul>
-					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
-					<div class="category-box product-box">
-						<div class="inner-product">
-							<img src="images/featured/featured-4.jpg" alt="featured-img"/>
-							<div class="product-box-inner">
-								<ul>
-									<li><a title="Eye" href="images/featured/featured-4.jpg"><i class="fa fa-eye"></i></a></li>
-									<li><a title="Heart" href="#"><i class="fa fa-heart"></i></a></li>
 								</ul>
 								<a title="Add to cart" href="#" class="btn">add to cart</a>
 							</div>
 						</div>
 					</div>
-					<a title="Fashionable Pink Top" href="#" class="product-title">Fashionable Pink Top</a>
+				<a title="Fashionable Pink Top" href="{% url 'shop:product'  product_id=i.id %}" class="product-title">{{ i.name }}</a>
 					<ul class="star">
 						<li>
 						<i class="fa fa-star"></i>
@@ -480,6 +183,7 @@
 					</ul>
 					<span class="amount"><del>&dollar;24.99</del> &dollar;19.99</span>
 				</div>
+				{% endfor %}
 			</div>
 		</div><!-- container /- -->
 	</div>

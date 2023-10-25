@@ -262,75 +262,77 @@
                   <div data-i18n="Accordion">User Management</div>
                 </a>
               </li>
-              </ul>
-      
-              <li class="menu-item">
-                <a href="javascript:void(0)" class="menu-link menu-toggle">
-                  <i class="menu-icon tf-icons bx bx-copy"></i>
-                  <div data-i18n="User interface">Product</div>
-                </a>
-                <ul class="menu-sub">
+            </ul>
+           </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-copy"></i>
+                    <div data-i18n="User interface">Product Management</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{% url 'items:product_manage' %}" class="menu-link">
+                        <div data-i18n="Accordion">Product </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
                   <li class="menu-item">
-                    <a href="{% url 'items:product_manage' %}" class="menu-link">
-                      <div data-i18n="Accordion">Product Management</div>
-                    </a>
-                  </li>
-
-
-
-                  <li class="menu-item">
-                    <a href="#" class="menu-link menu-toggle">
-                      <div data-i18n="Accordion">Variant Management</div>
+                    <a href="javascript:void(0)" class="menu-link menu-toggle">
+                      <i class="menu-icon tf-icons bx bx-detail"></i>
+                      <div data-i18n="User interface">Variant Management</div>
                     </a>
                     <ul class="menu-sub">
                       <li class="menu-item">
-                        
-                    <a href="{% url 'items:color' %}" class="menu-link">
-                      <div data-i18n="Accordion">Color </div>
-                    </a>
-
-                    <a href="{% url 'items:size' %}" class="menu-link">
-                      <div data-i18n="Accordion">Size</div>
-                    </a>
-
-                    </li>
-                  </ul>
-                  </li>
-
-                  <li class="menu-item">
-                    <a href="{% url 'items:category_manage' %}" class="menu-link menu-toggle">
-                      <div data-i18n="Accordion">Category Management</div>
-                    </a>
-                    <ul class="menu-sub">
+                        <a href="{% url 'items:variant' %}" class="menu-link">
+                          <div data-i18n="Accordion">Variant </div>
+                        </a>
+                      </li>
                       <li class="menu-item">
-                    <a href="{% url 'items:category_manage' %}" class="menu-link">
-                      <div data-i18n="Accordion">Category </div>
-                    </a>
-                    <a href="{% url 'items:brand' %}" class="menu-link">
-                      <div data-i18n="Accordion">Brand</div>
-                    </a>
-                    </li>
-                  </ul>
+                        <a href="{% url 'items:color' %}" class="menu-link">
+                          <div data-i18n="Accordion">Color </div>
+                        </a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="{% url 'items:size' %}" class="menu-link">
+                          <div data-i18n="Accordion">Size</div>
+                        </a>
+                      </li>
+                    </ul>
                   </li>
 
 
 
+                    <li class="menu-item">
+                      <a href="javascript:void(0)" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-table"></i>
+                        <div data-i18n="User interface">Category Management</div>
+                      </a>
+                      <ul class="menu-sub">
+                        <li class="menu-item">
+                          <a href="{% url 'items:category_manage' %}" class="menu-link">
+                            <div data-i18n="Accordion">Category </div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{% url 'items:brand' %}" class="menu-link">
+                            <div data-i18n="Accordion">Brand </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
 
-
-
-
-                  
-                  </ul>
             
       
           <!-- Forms & Tables -->
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
           <!-- Forms -->
-          <li class="menu-item">
+          <!-- <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-detail"></i>
               <div data-i18n="Form Elements">Form Elements</div>
-            </a>
+            </a> -->
             <ul class="menu-sub">
               <li class="menu-item">
                 <a href="forms-basic-inputs.html" class="menu-link">
@@ -371,7 +373,7 @@
           </li>
           <!-- Misc -->
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-          <li class="menu-item">
+          <!-- <li class="menu-item">
             <a
               href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
               target="_blank"
@@ -380,8 +382,8 @@
               <i class="menu-icon tf-icons bx bx-support"></i>
               <div data-i18n="Support">Support</div>
             </a>
-          </li>
-          <li class="menu-item">
+          </li> -->
+          <!-- <li class="menu-item">
             <a
               href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
               target="_blank"
@@ -390,7 +392,7 @@
               <i class="menu-icon tf-icons bx bx-file"></i>
               <div data-i18n="Documentation">Documentation</div>
             </a>
-          </li>
+          </li> -->
         </ul>
       </aside>
 
@@ -403,6 +405,8 @@
 
 </div>
 </div>
+
+
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->

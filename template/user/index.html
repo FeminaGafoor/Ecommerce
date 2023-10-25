@@ -26,9 +26,10 @@
 					<img src="static/user/assets/images/14.02.00_b9de395a.jpg" alt="slide-1">
 					<div class="container">
 						<div class="slider-box">
-							<h3>Beauty &amp; Brain</h3>
+							<h3>Beauty &amp; SkinCare</h3>
 							<h2>Fresh Fall Styles</h2>
-							<p>Nam ac egestas est. Mauris et pulvinar Alisesus, at tincidunt lorem maecenas tristique sit amet odio sit amet. </p>
+							<p>Fall is the season of change, and our Fresh Styles are here to embrace the latest trends. Explore our latest arrivals and elevate your autumn wardrobe.</p>
+
 							<button class="btn">Button</button>
 						</div>
 					</div>
@@ -37,9 +38,10 @@
 					<img src="static/user/assets/images/bacgrou14.48.16_7d6571b6.jpg" alt="slide-1">
 					<div class="container">
 						<div class="slider-box">
-							<h3>Beauty &amp; Brain</h3>
+							<h3>Beauty &amp; SkinCare</h3>
 							<h2>Fresh Fall Styles</h2>
-							<p>Nam ac egestas est. Mauris et pulvinar Alisesus, at tincidunt lorem maecenas tristique sit amet odio sit amet. </p>
+							<p>Fall is the season of change, and our Fresh Styles are here to embrace the latest trends. Explore our latest arrivals and elevate your autumn wardrobe.</p>
+
 							<button class="btn">Button</button>
 						</div>
 					</div>
@@ -48,9 +50,10 @@
 					<img src="static/user/assets/images/bckgr 14.40.16_755a986e.jpg" alt="slide-2">
 					<div class="container">
 						<div class="slider-box">
-							<h3>Beauty &amp; Brain</h3>
+							<h3>Beauty &amp; SkinCare</h3>
 							<h2>Fresh Fall Styles</h2>
-							<p>Nam ac egestas est. Mauris et pulvinar Alisesus, at tincidunt lorem maecenas tristique sit amet odio sit amet. </p>
+							<p>Fall is the season of change, and our Fresh Styles are here to embrace the latest trends. Explore our latest arrivals and elevate your autumn wardrobe.</p>
+
 							<button class="btn">Button</button>
 						</div>
 					</div>
@@ -75,7 +78,7 @@
 		<div class="container">
 			<div class="col-md-3 categories-title col-sm-4">
 				<h3>Special Offer’s and Discount</h3>
-				<p>Vivamus nec urna luctus, dignissim est</p>
+				<p>Shop smart with our special offers and discounts</p>
 			</div>
 			<div class="col-md-6 col-sm-4">
 				<h3>70,000+ Collection</h3>
@@ -83,24 +86,38 @@
 			</div>
 			<div class="col-md-3 col-sm-4 categories-title">
 				<h3>Free 30 Days Returns</h3>
-				<p>Sed at justo eget nulla placerat</p>
+				<p>Don't miss out our exclusive special offers and discounts</p>
 			</div>
 			<div class="category-box-main categories-slider">
 
 <!---------------------- Owl Carousel --------------------------------------------------------->
 
-				<div id="categories-list" class="owl-carousel owl-theme our-partner">
-					<div class="item">						
+				<!-- <div id="categories-list" class="owl-carousel owl-theme our-partner">
+					<div class="item">	
+						{% for item in category %}					
 						<div class="category-box">
 							<span class="sale">+786</span>
 							<a title="Women’s Wear" href="./02_categories.html">
-								<img src="static/user/assets/images/owl1car.png" alt="cat-img" />
+								<img src="{{ item.image.url }}}" alt="cat-img" />
 								<span>Women’s Wear</span>
 								<div class="cat-hover"></div>
 							</a>
 						</div>
-					</div>
+						{% endfor %}
+					</div> -->
 					<div class="item">
+						{% for item in category %}
+						<div class="category-box">
+							<a title="{{ item.name }}" href="#">
+								<img src="{{ item.image.url }}"  alt="{{ item.name }}" />
+								<span>{{ category.name }}</span>
+								<div class="cat-hover"></div>
+							</a>
+						</div>
+						{% endfor %}
+					</div>
+					
+					<!-- <div class="item">
 						<div class="category-box">
 							<a title="Accessories" href="./02_categories.html">
 								<img src="images/category/cat-img-2.jpg" alt="cat-img"/>
@@ -108,8 +125,8 @@
 								<div class="cat-hover"></div>
 							</a>
 						</div>
-					</div>
-					<div class="item">
+					</div> -->
+					<!-- <div class="item">
 						<div class="category-box">
 							<span class="new">New</span>
 							<a title="Kids Wear" href="./02_categories.html">
@@ -118,8 +135,8 @@
 								<div class="cat-hover"></div>
 							</a>
 						</div>
-					</div>
-					<div class="item">
+					</div> -->
+					<!-- <div class="item">
 						<div class="category-box">
 							<a title="Women Accessories" href="./02_categories.html">
 								<img src="images/category/cat-img-4.jpg" alt="cat-img"/>
@@ -127,8 +144,8 @@
 								<div class="cat-hover"></div>
 							</a>
 						</div>
-					</div>
-					<div class="item">
+					</div> -->
+					<!-- <div class="item">
 						<div class="category-box">
 							<span class="new">New</span>
 							<a title="Kids Wear" href="./02_categories.html">
@@ -137,8 +154,8 @@
 								<div class="cat-hover"></div>
 							</a>
 						</div>
-					</div>
-					<div class="item">
+					</div> -->
+					<!-- <div class="item">
 						<div class="category-box">
 							<a title="Women Accessories" href="./02_categories.html">
 								<img src="images/category/cat-img-6.jpg" alt="cat-img"/>
@@ -146,7 +163,7 @@
 								<div class="cat-hover"></div>
 							</a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div><!-- container /- -->
@@ -159,9 +176,8 @@
 			<!-- Section Header -->
 			<div class="section-header">
 				<h3>Featured products</h3>
-				<p>Nam ac egestas est. Mauris et pulvinar risus, at tincidunt lorem. Maecenas tristique sit amet odio sit amet aliquet. Quisque a pharetra quam. Sed in ultrices diam, eget sodales ligula. Sed ut tincidunt lacus.</p>
-			</div><!-- Section Header /- -->
-			
+				<p>Elevate your beauty routine with our luxurious cosmetics. Get ready to turn heads wherever you go.
+					Pamper yourself with our collection of high-quality beauty products. You deserve to look and feel your best.</p>
 			<div class="category-box-main product-box-main">
 				<div class="col-md-3 col-sm-6 col-xs-6 main-product">
 					<div class="category-box product-box">

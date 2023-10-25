@@ -44,8 +44,8 @@ def admin_panel(request):
 
 
 def ad_logout(request):
-    logout(request)
     
+    logout(request)
     return render(request,'admini/ad_login.html')
     
 

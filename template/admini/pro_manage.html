@@ -133,6 +133,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Image</th>
                     <th>Brand</th>
                     <th>Category</th>
                     <th>Create</th>
@@ -148,6 +149,7 @@
                     <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>{{ forloop.counter }}</strong></td>
                     <td>{{item.name}}</td>
                     <td>{{item.description}}</td>
+                    <td><img style="width:50px" src="{{ item.image.url }}" alt="image"></td>
                     <td>{{item.brand }}</td>
                     <td>{{item.category }}</td>
                     <td>{{item.create}}</td>
@@ -202,6 +204,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+
+
+        
         <!-- Your edit form goes here -->
         <form method="POST" action="{% url 'items:edit_product' item.id %}" enctype="multipart/form-data">
 
@@ -218,6 +223,16 @@
             <label for="edit_description{{ forloop.counter }}" class="form-label">Description</label>
             <textarea class="form-control" id="edit_description{{ forloop.counter }}" name="edit_description" required>{{ item.description }}</textarea>
           </div>
+
+          <div class="mb-3">
+            <label for="edit_image{{ forloop.counter }}" class="form-label">Image</label>
+        
+            <!-- Display existing image -->
+            <img src="{{ item.image.url }}" alt="image" style="width: 50px; margin-bottom: 10px;">
+        
+            <!-- File input for uploading a new image -->
+            <input type="file" class="form-control" id="edit_image{{ forloop.counter }}" name="edit_image" accept="image/*">
+        </div>
 
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Brand</label>

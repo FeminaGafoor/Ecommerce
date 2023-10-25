@@ -223,7 +223,7 @@
 
 
 
-<!-- --------Edit modal------->
+<!-- --------Edit modal--------------------------------------------------------->
 
 {% for item in brand %} 
 <!-- Edit Modal for {{ item.name }} -->
@@ -236,6 +236,7 @@
       </div>
       <div class="modal-body">
         <!-- Your edit form goes here -->
+
       <form method="POST" action="{% url 'items:edit_brand' item.id %}" enctype="multipart/form-data"> 
 
           {% csrf_token %}
@@ -251,16 +252,12 @@
         
             <!-- Display existing image -->
         
-          <img src="{{ item.brand_img.url }}" alt="image" style="width: 50px; margin-bottom: 10px;">
+          <img src="{{ item.brand_image.url }}" alt="image" style="width: 50px; margin-bottom: 10px;">
 
         
             <!-- File input for uploading a new image -->
            <input type="file" class="form-control" id="edit_image{{ forloop.counter }}" name="edit_image" accept="image/*">
         </div>
-
-          
-        
-
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>
@@ -269,7 +266,10 @@
 </div>
 {% endfor %}
 
+
 <!-- --------Delete Modal------->
+
+
 {% for item in brand %} 
   <!-- Delete Modal for {{ item.name }} -->
   <div class="modal fade" id="deleteModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ forloop.counter }}" aria-hidden="true">
@@ -290,6 +290,7 @@
     </div>
   </div>
 {% endfor %}
+
     <!-- Content wrapper -->
     <div class="content-wrapper">
       <!-- Content -->
