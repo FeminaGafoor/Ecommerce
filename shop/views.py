@@ -41,10 +41,29 @@ def category(request):
 
 
 def womens(request):
-    return render(request,'user/womens.html')
+    women_products = Products.objects.filter(category__name='Women')
+
+    context = {
+        'women_products': women_products
+    }
+
+    return render(request,'user/womens.html',context)
+
+
 
 def mens(request):
-    return render(request,'user/mens.html')
+    men_products = Products.objects.filter(category__name='Men')
+    
+    context = {
+        'men_products' : men_products
+    }
+    return render(request,'user/mens.html',context)
+
 
 def kids(request):
-    return render(request,'user/kids.html')
+    kid_products = Products.objects.filter(category__name='Kids')
+    
+    context = {
+        'kid_products' : kid_products
+    }
+    return render(request,'user/kids.html',context)

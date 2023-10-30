@@ -89,44 +89,7 @@
 							</td>
 						</tr>	
 						
-						<tr>
-							<td data-title="Product" class="product-tdumbnail">
-								<a title="Summary" href="#"><img src="images/summary/summary-2.png" alt="summary"/></a>
-							</td>
-							<td data-title="Description" class="product-description">
-								<a title="Order No" href="#">
-									<b>Sed ligula magna facilisis.</b>
-									Order No. 10101988 - 25
-								</a>
-							</td>
-							<td data-title="brand" class="product-brand">
-								<span><img src="images/summary/gucci-icon.png" alt="gucci" /></span>
-							</td>
-							<td data-title="Color" class="product-color">
-								<span class="choose-color"></span>
-							</td>							
-							<td data-title="Size" class="product-size">
-								<span class="choose-size">L</span>
-							</td>
-							<td class="blank-space"></td>
-							<td data-title="Price" class="product-price">
-								<span class="price-amount">&euro;3,200.00</span>
-							</td>
-							<td data-title="Quantity" class="product-quantity">
-								<div class="quantity">
-									<input type="button" value="+" class="qtyplus" data-field="quantity2" />
-									<input type="text" name="quantity2" value="0" class="qty" />
-									<input type="button" value="-" class="qtyminus" data-field="quantity2" />
-								</div>
-							</td>	
-							<td data-title="subtotal" class="product-subtotal">
-								<span class="amount">&dollar; 19.99</span>
-							</td>
-							<td data-title="edit/delete" class="product-edit">
-								<a title="Pencil Icon" href="#"><span class="product-edit"><i class="fa fa-pencil-square-o"></i></span></a>
-								<a title="Trash Icon" href="#"><span class="product-delete"><i class="fa fa-trash-o"></i></span></a>
-							</td>
-						</tr>
+					
 						
 						<tr>
 							<td data-title="Product" class="product-tdumbnail">
@@ -167,44 +130,7 @@
 							</td>
 						</tr>
 						
-						<tr>
-							<td data-title="Product" class="product-tdumbnail">
-								<a title="Summary" href="#"><img src="images/summary/summary-4.png" alt="summary"/></a>
-							</td>
-							<td data-title="Description" class="product-description">
-								<a title="Order No" href="#">
-									<b>Commodo a ipsum non.</b>
-									Order No. 10101990 - 23
-								</a>
-							</td>
-							<td data-title="brand" class="product-brand">
-								<span><img src="images/summary/gucci-icon.png" alt="gucci" /></span>
-							</td>
-							<td data-title="Color" class="product-color">
-								<span class="choose-color"></span>
-							</td>							
-							<td data-title="Size" class="product-size">
-								<span class="choose-size">S</span>
-							</td>
-							<td class="blank-space"></td>
-							<td data-title="Price" class="product-price">
-								<span class="price-amount">&euro;3,200.00</span>
-							</td>
-							<td data-title="Quantity" class="product-quantity">
-								<div class="quantity">
-									<input type="button" value="+" class="qtyplus" data-field="quantity4" />
-									<input type="text" name="quantity4" value="0" class="qty" />
-									<input type="button" value="-" class="qtyminus" data-field="quantity4" />
-								</div>
-							</td>	
-							<td data-title="subtotal" class="product-subtotal">
-								<span class="amount">&dollar; 19.99</span>
-							</td>
-							<td data-title="edit/delete" class="product-edit">
-								<a title="Pencil Icon" href="#"><span class="product-edit"><i class="fa fa-pencil-square-o"></i></span></a>
-								<a title="Trash Icon" href="#"><span class="product-delete"><i class="fa fa-trash-o"></i></span></a>
-							</td>
-						</tr>
+						
 						
 						<tr>
 							<td data-title="Product" class="product-tdumbnail">
@@ -595,7 +521,18 @@
 								</tr>
 							</tbody>
 						</table>
-						<button type="submit" class="btn btn-default">proceed to checkout</button>
+						
+						<a href="{% url 'outgoing:checkout' %}" class="btn btn-default" id="checkout-link">proceed to checkout</a>
+
+						<script>
+						document.getElementById("checkout-link").addEventListener("click", function(event) {
+							event.preventDefault(); // Prevent the default behavior of the link
+							// Perform any other actions or validations you may need before submitting
+							// For example, you can use JavaScript to check some conditions before proceeding to the checkout URL.
+							// If conditions are met, navigate to the checkout URL:
+							window.location.href = this.getAttribute("href");
+						});
+						</script>
 					</div>
 				</div><!-- col-md-4 /- -->
 			</div>

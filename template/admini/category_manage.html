@@ -127,7 +127,15 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
   Add Category
 </button>
-
+      {% if messages%}
+      <div>
+        {% for message in messages %}
+            <div class="message-container {% if message.tags == 'success' %}success{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+      </div>
+      {% endif %}
         <!-- Hoverable Table rows -->
         <div class="card">
           <h5 class="card-header">Categories</h5>
@@ -257,13 +265,6 @@
             <input type="text" class="form-control" id="edit_name{{ forloop.counter }}" name="edit_name" value="{{ item.name }}" required>
           </div>
 
-
-         <!-- <div class="mb-3">
-            <label for="edit_image{{ forloop.counter }}" class="form-label">Image URL</label>
-            <input type="file" class="form-control" id="edit_image{{ forloop.counter }}" name="edit_image" value="{{ item.image }}" required>
-          </div>  -->
-
-
           <div class="mb-3">
             <label for="edit_image{{ forloop.counter }}" class="form-label">Image</label>
         
@@ -287,6 +288,7 @@
   </div>
 </div>
 {% endfor %}
+
 
 <!-- --------Delete Modal------->
 {% for item in category %}
@@ -318,10 +320,6 @@
       <div class="container-xxl flex-grow-1 container-p-y">
     </div>
   <!-- / Content -->
-
-
-
-
 
 
 <!-- Footer -->

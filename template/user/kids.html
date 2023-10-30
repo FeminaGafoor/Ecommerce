@@ -31,180 +31,20 @@
     <div class="container">
         <!-- category box main -->
         <div class="category-box-main">
+            {% for item in kid_products %}
             <!-- col-md-3 -->
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="category-box">
                     <span class="sale">+786</span>
-                    <a title="Women’s Wear" href="{% url 'shop:product' %}">
-                        <img src="images/category/cat-img-1.jpg" alt="cat-img" />
-                        <span>Kids</span>
+                    <a title="{{ item.name }}" href="{% url 'shop:kids' %}">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="width:355px; height:355px;"/>
+                        <span>{{ item.name }}</span>
                         <div class="cat-hover"></div>
                     </a>
                 </div>
             </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Accessories" href="#">							
-                        <img src="images/category/cat-img-2.jpg" alt="cat-img" />
-                        <span>Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <span class="new">New</span>
-                    <a title="Kids Wear" href="#">
-                        <img src="images/category/cat-img-3.jpg" alt="cat-img" />
-                        <span>Kids</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-4.jpg" alt="cat-img" />
-                        <span>Men</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-        </div><!-- category box main /- -->
-        <!-- category box main -->
-        <div class="category-box-main">
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-5.jpg" alt="cat-img" />
-                        <span>Women Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-6.jpg" alt="cat-img" />
-                        <span>Women Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <span class="sale">+786</span>
-                    <a title="Women’s Wear" href="#">
-                        <img src="images/category/cat-img-7.jpg" alt="cat-img" />
-                        <span>Men's</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Accessories" href="#">
-                        <img src="images/category/cat-img-8.jpg" alt="cat-img" />
-                        <span>Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-        </div><!-- category box main /- -->
-        <!-- category box main -->
-        <div class="category-box-main">
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <span class="new">New</span>
-                    <a title="Kids Wear" href="#">				
-                        <img src="images/category/cat-img-9.jpg" class="lazy img-responsive" data-original="" alt="cat-img" />
-                        <span>Kids</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-10.jpg" alt="cat-img" />
-                        <span>Women Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-11.jpg" alt="cat-img" />
-                        <span>Women Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-12.jpg" alt="cat-img" />
-                        <span>Men</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-        </div><!-- category box main /- -->
-        <!-- category box main -->
-        <div class="category-box-main new-categories">
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <span class="new">New</span>
-                    <a title="Kids Wear" href="#">
-                        <img src="images/category/cat-img-1.jpg" class="lazy img-responsive" data-original="" alt="cat-img" />
-                        <span>Kids</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-2.jpg" alt="cat-img" />
-                        <span>Men</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">
-                        <img src="images/category/cat-img-3.jpg" alt="cat-img" />
-                        <span>Women Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
-            <!-- col-md-3 -->
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="category-box">
-                    <a title="Women Accessories" href="#">							
-                        <img src="images/category/cat-img-4.jpg" alt="cat-img" />
-                        <span>Women Accessories</span>
-                        <div class="cat-hover"></div>
-                    </a>
-                </div>
-            </div><!-- col-md-3 /- -->
+           {% endfor %}
+          
         </div><!-- category box main /- -->
         <div class="drop-line bottom-shadow"></div>
         <div class="loading">

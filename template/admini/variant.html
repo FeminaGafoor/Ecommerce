@@ -359,6 +359,15 @@
             <label for="images" class="form-label">Images</label>
             <input type="file" name="images" id="images" multiple required>
         </div>
+        <script>
+          document.getElementById("images").addEventListener("change", function() {
+              var files = this.files;
+              if (files.length > 3) {
+                  alert("You can only upload a maximum of three images.");
+                  this.value = ''; // Clear the selected files
+              }
+          });
+          </script>
 
           <div class="mb-3">
             <label for="name" class="form-label">Stock</label>

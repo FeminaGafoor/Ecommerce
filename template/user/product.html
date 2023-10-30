@@ -184,7 +184,7 @@
 
 					
 					<ul id="color-widget" class="single-side-widget color-widget top-social ow-left-padding">
-						<li><a title="Check" href="#" class="white"><i class="fa fa-check"></i></a></li>
+						<!-- <li><a title="Check" href="#" class="white"><i class="fa fa-check"></i></a></li> -->
 						<li><a title="Check" href="#" class="color color1 active"><i class="fa fa-check"></i></a></li>
 						<li><a title="Check" href="#" class="color4"><i class="fa fa-check"></i></a></li>
 						<li><a title="Check" href="#" class="color5"><i class="fa fa-check"></i></a></li>
@@ -212,11 +212,11 @@
 					<aside class="widget widget_recent_post">						
 						<div role="tabpanel">
 							<!-- Nav tabs -->
-							<ul role="tablist" class="nav nav-tabs bottom-shadow">
-								<li class="active" role="presentation"><a title="Pricing" data-toggle="tab" role="tab" aria-controls="pricing" href="#pricing">Pricing</a></li>
-								<li role="presentation"><a title="Size Chart" data-toggle="tab" role="tab" aria-controls="size-chart" href="#size-chart">size chart</a></li>
-								<li class="" role="presentation"><a title="Reviews" data-toggle="tab" role="tab" aria-controls="reviews" href="#reviews">Reviews</a></li>
-							</ul>
+							<!-- <ul role="tablist" class="nav nav-tabs bottom-shadow"> -->
+								<!-- <li class="active" role="presentation"><a title="Pricing" data-toggle="tab" role="tab" aria-controls="pricing" href="#pricing"></a></li> -->
+								<!-- <li role="presentation"><a title="Size Chart" data-toggle="tab" role="tab" aria-controls="size-chart" href="#size-chart"></a></li>
+								<li class="" role="presentation"><a title="Reviews" data-toggle="tab" role="tab" aria-controls="reviews" href="#reviews"></a></li>
+							</ul> -->
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div id="pricing" class="tab-pane active" role="tabpanel">
@@ -243,13 +243,13 @@
 											</tbody>
 										</table>
 										<ul>
-											<li><a title="But Now" href="#">Buy Now</a></li>
-											<li><a title="Favorites" href="#">Favorites</a></li>
+											<li><a title="But Now" href="{% url 'outgoing:cart' %}">Add To Cart</a></li>
+											<!-- <li><a title="Favorites" href="#">Favorites</a></li> -->
 										</ul>
 									</div>
 									<a title="Add Banner" href="#"><img src="static/user/assets/images/banner20231009_143002_0000-01.jpeg.jpg" alt="add-banner" /></a>
 								</div>
-								<div id="size-chart" class="tab-pane" role="tabpanel">
+								<!-- <div id="size-chart" class="tab-pane" role="tabpanel">
 									<div class="shopping-cart-table size-chart">
 										<div class="col-md-5 col-sm-5">
 											<ol>
@@ -349,8 +349,8 @@
 											</table>
 										</div>	
 									</div>
-								</div>
-								<div id="reviews" class="tab-pane" role="tabpanel">
+								</div> -->
+								<!-- <div id="reviews" class="tab-pane" role="tabpanel">
 									<div class="shopping-cart-table">
 										<div class="review-box">
 											<div class="col-md-5 col-sm-5">
@@ -393,7 +393,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</aside>

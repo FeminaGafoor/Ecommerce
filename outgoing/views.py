@@ -1,8 +1,13 @@
 from django.shortcuts import render
 
 # Create your views here.
-def shipping_address(request):
-    return render(request,'user/shipping_address.html')
+def cart(request):
+    return render(request,'user/cart.html')
+
+def checkout(request):
+    return render(request,'user/checkout.html')
+
+
 
 def payments(request):
     return render(request,'user/payments.html')

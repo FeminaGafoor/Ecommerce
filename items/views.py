@@ -1,4 +1,5 @@
 from decimal import Decimal, InvalidOperation
+from django.db.models import Q 
 from functools import reduce
 from tkinter import Image
 from django.shortcuts import render,redirect, get_object_or_404
@@ -39,9 +40,19 @@ def add_categories(request):
             if category_name.strip() == '':
                 messages.error(request, 'field is empty!')
                 return redirect('items:add_categories')
-            elif Category.objects.filter(name=category_name).exists():
-                messages.error(request, 'the category is already taken')
+           
+            # elif Category.objects.filter(name=category_name).exists():
+            #     messages.error(request, 'The entered category is already taken')
+            #     return redirect('items:add_categories')
+            
+            existing_category = Category.objects.filter(
+                Q(name__iexact=category_name)
+            ).first()
+
+            if existing_category:
+                messages.error(request, 'The entered category is already taken')
                 return redirect('items:add_categories')
+            
             elif not category_image:
                 messages.error(request, 'image is not uploaded!')
                 return redirect('items:add_categories')
@@ -55,7 +66,8 @@ def add_categories(request):
                 new_category.save()
                 messages.success(request, 'Categories are added successfully')
                 return redirect('items:category_manage')
-    
+        else:
+            return redirect('items:category_manage')
     else:
         return redirect('for_admin:ad_login')    
     
@@ -78,9 +90,15 @@ def edit_categories(request,category_id):
             if category_name.strip() == "":
                 messages.error(request,"Field is empty!")
                 return redirect('items:category_manage')
-            elif Category.objects.filter(name=category_name).exclude(id=category_id).exists():
-                messages.error(request, 'The category name is already taken')
-                return redirect('items:category_manage')
+            
+            existing_category = Category.objects.filter(
+                Q(name__iexact=category_name)
+            ).first()
+
+            if existing_category:
+                messages.error(request, 'The entered category is already taken')
+                return redirect('items:add_categories')
+            
             elif not category_image:
                 messages.error(request, 'Image is not uploaded!')
                 return redirect('items:category_manage')
@@ -488,44 +506,34 @@ def edit_product(request,product_id):
             name = request.POST.get('edit_name')
             description = request.POST.get('edit_description')
             product_image = request.FILES.get('edit_image')
-            brand = request.POST.get('edit_brand')
-            category_name = request.POST.get('edit_category')
+            brand = request.POST.get('brand')
+            category_name = request.POST.get('category')
             
+            print(product_id, name, brand, category_name, description)
             
              #---validate the form data-----
 
-            if name.strip() == "":
-                messages.error(request,"Field is empty!")
-                return redirect('items:product_manage')
-            elif Products.objects.filter(name=name).exclude(id=product_id).exists():
-                messages.error(request, 'The product name is already taken')
-                return redirect('items:product_manage')
-            elif description.strip() == '':
-                messages.error(request, 'Description is not given!')
-                return redirect('items:product_manage')
-            elif not product_image:
-                messages.error(request, 'Image is not uploaded!')
-                return redirect('items:product_manage')
-            elif brand.strip() == '':
-                messages.error(request, 'Brand is not given!')
-                return redirect('items:product_manage')
-            elif category_name.strip() == '':
-                messages.error(request, 'Category is not given!')
-                return redirect('items:product_manage')
+            
+      
             
              # Create an instance of Brand
             brand_instance = Brand.objects.get(brand_name=brand)
+            print(brand,'brand')
              # Create an instance of category
-            category_instance = Category.objects.get(name = category_name)
+            
+            category_instance = Category.objects.get(id=category_name)
             
             update = get_object_or_404(Products,id=product_id)
+            print(update, 'product')
             update.name = name
             update.description = description
-            update.image = product_image
+            if product_image:
+                update.image = product_image
             update.brand = brand_instance
             update.category = category_instance
         
             update.save()
+            
             messages.success(request, 'Product updated successfully')
             return redirect('items:product_manage')
         
@@ -535,6 +543,7 @@ def edit_product(request,product_id):
         return render(request, 'admini/pro_manage.html')
         
     else:
+
         return redirect('for_admin:ad_login')
     
    
@@ -621,7 +630,7 @@ def add_variant(request):
             product_variant.size.set(selected_size_ids)
         
             product_variant.save()
-            messages.success(request, 'Product added successfully.')
+            messages.success(request, 'Variant added successfully.')
             return redirect('items:variant')
     
     

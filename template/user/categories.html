@@ -42,8 +42,14 @@
 						{% for item in category %}
 						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="category-box">
-								<a title="{{ item.name }}" href="#">
-									<img src="{{ item.image.url }}" alt="{{ item.name }}" style="width: 556.33px; height: 357.33px;"/>
+										{% if item.name == "Women" %}
+											<a title="{{ item.name }}" href="{% url 'shop:womens' %}">
+										{% elif item.name == "Men" %}	
+											<a title="{{ item.name }}" href="{% url 'shop:mens' %}">
+										{% else %}
+											<a title="{{ item.name }}" href="{% url 'shop:kids' %}">
+										{% endif %}
+										<img src="{{ item.image.url }}" alt="{{ item.name }}" style="width: 556.33px; height: 357.33px;"/>
 									<span>{{item.name }}</span>
 									<div class="cat-hover"></div>
 								</a>

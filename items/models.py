@@ -25,10 +25,18 @@ class Brand(models.Model):
 
 class Color(models.Model):
     name = models.CharField(max_length= 50)
+    code = models.CharField(max_length=20,blank=True,null=True)
     
+    
+    def __str__(self):
+        return self.name
 
 class Size(models.Model):
     name = models.CharField(max_length= 10)   
+    code = models.CharField(max_length=20,blank=True,null=True)
+    
+    def __str__(self):
+        return self.name
     
 
 class Products(models.Model):
@@ -60,6 +68,7 @@ class Product_variant(models.Model):
        
        
 class ProductImage(models.Model):
+    
     pro_variant = models.ForeignKey(Product_variant,null=True, on_delete=models.CASCADE)
     images = models.ImageField(upload_to='variantproduct_images/',blank=True)
     

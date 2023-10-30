@@ -1934,7 +1934,7 @@ a {
 }
 
 .color1 {
-	background-color: #b8795e;
+	background-color: #e89783;
 }
 
 .color2 {
@@ -1946,11 +1946,11 @@ a {
 }
 
 .color4 {
-	background-color: #7f4735 !important;
+	background-color: #b1594e !important;
 }
 
 .color5 {
-	background-color: #cb645d;
+	background-color: #d07467;
 }
 
 .choose-size { 
@@ -2734,7 +2734,7 @@ input.qtyplus, input.qtyminus {
 .color-widget a.active i,
 .color-widget a:hover > i {
 	display: block;
-	color: #fff;
+	/* color: #fff; */
 	line-height: 29px;
 }
 
