@@ -204,33 +204,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{% url 'items:edit_product' item.id%}" method="POST">
-          {%csrf_token%}
-
-          <input type="text" value="{{item.name}}" name="edit_name" id="">
-          <input type="text" value="{{item.description}}" name="edit_description" id="">
-          <img src="{{ item.image.url }}" alt="image" style="width: 50px; margin-bottom: 10px;">
-          <input type="file" class="form-control" value="{{item.image}}"  name="edit_image" accept="image/*">
-
-          <select name="brand" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-            <option selected>Open this select brand</option>
-            {% for b in brand %}
-            <option value="{{item.brand.id}}"selected>{{item.brand.brand_name}}</option>
-            <option value="{{ b.id }}">{{ b.brand_name }}</option>
-            {% endfor %}
-          </select>
-          <select name="category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-            <option selected>Open this select category</option>
-            {% for c in category %}
-            <option value="{{ item.category.id}}" selected>{{ item.category.name }}</option>
-            <option value="{{ c.id }}">{{ c.name }}</option>
-            {% endfor %}
-          </select>
-          
-          
-          <button type="submit">Submit</button>
-
-        </form>
 
 
         
@@ -258,7 +231,7 @@
             <img src="{{ item.image.url }}" alt="image" style="width: 50px; margin-bottom: 10px;">
         
             <!-- File input for uploading a new image -->
-            <input type="file" class="form-control"  name="edit_image" accept="image/*">
+            <input type="file" class="form-control" id="edit_image{{ forloop.counter }}" name="edit_image" accept="image/*">
         </div>
 
           <div class="mb-3">
@@ -266,7 +239,6 @@
             <select name="brand" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                 <option selected>Open this select brand</option>
                 {% for b in brand %}
-                <option value="{{item.brand.brand_name}}"selected>{{item.brand.brand_name}}</option>
                 <option value="{{ b.brand_name }}">{{ b.brand_name }}</option>
                 {% endfor %}
               </select>
@@ -277,7 +249,6 @@
             <select name="category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
               <option selected>Open this select category</option>
               {% for c in category %}
-              <option value="{{ item.category.name}}" selected>{{ item.category.name }}</option>
               <option value="{{ c.id }}">{{ c.name }}</option>
               {% endfor %}
             </select>

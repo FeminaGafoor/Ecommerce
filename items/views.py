@@ -176,7 +176,7 @@ def edit_brand(request,brand_id):
             brand_name = request.POST.get('edit_name')
             brand_image = request.FILES.get('edit_image')
             
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            
             
             #---validate the form data-----
 
@@ -420,7 +420,8 @@ def product_manage(request):
     products = Products.objects.all()
     category=Category.objects.all()
     brand=Brand.objects.all()
-    
+    for item in products:
+        print(item.image.url)
     context={
         'product' :products,
         'brand':brand,
@@ -480,17 +481,6 @@ def add_product(request):
     
 def edit_product(request,product_id): 
     
-    
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
     if request.user.is_superuser:
 
         
@@ -498,71 +488,46 @@ def edit_product(request,product_id):
             name = request.POST.get('edit_name')
             description = request.POST.get('edit_description')
             product_image = request.FILES.get('edit_image')
-            brand = request.POST.get('brand')
-            category_name = request.POST.get('category')
+            brand = request.POST.get('edit_brand')
+            category_name = request.POST.get('edit_category')
             
             
-            print(product_image)
-            print(product_image)
-            print(product_image)
-            print(product_image)
-            print(brand)
-            print(brand)
-            print(brand)
-            
-            brand_instance = Brand.objects.get(id=brand)
-            category_instance = Category.objects.get(id=category_name)
-            
-            product = Products.objects.get(id=product_id)
-            product.name = name
-            product.description = description
-            product.brand = brand_instance
-            product.category = category_instance
-            
-            if product_image:
-                product.image = product_image
-
-            
-            product.save()
-            
-            return redirect('items:product_manage')
              #---validate the form data-----
 
-            # if name.strip() == "":
-            #     messages.error(request,"Field is empty!")
-            #     return redirect('items:product_manage')
-            # elif Products.objects.filter(name=name).exclude(id=product_id).exists():
-            #     messages.error(request, 'The product name is already taken')
-            #     return redirect('items:product_manage')
-            # elif description.strip() == '':
-            #     messages.error(request, 'Description is not given!')
-            #     return redirect('items:product_manage')
-            # elif not product_image:
-            #     messages.error(request, 'Image is not uploaded!')
-            #     return redirect('items:product_manage')
-            # elif brand is None or not brand.strip():
-            #     messages.error(request, 'Brand is not given!')
-            #     return redirect('items:product_manage')
-
-            # elif category_name.strip() == '':
-            #     messages.error(request, 'Category is not given!')
-            #     return redirect('items:product_manage')
-
-            #  # Create an instance of Brand
-            # brand_instance = Brand.objects.get(brand_name=brand)
-            #  # Create an instance of category
-            # category_instance = Category.objects.get(name = category_name)
+            if name.strip() == "":
+                messages.error(request,"Field is empty!")
+                return redirect('items:product_manage')
+            elif Products.objects.filter(name=name).exclude(id=product_id).exists():
+                messages.error(request, 'The product name is already taken')
+                return redirect('items:product_manage')
+            elif description.strip() == '':
+                messages.error(request, 'Description is not given!')
+                return redirect('items:product_manage')
+            elif not product_image:
+                messages.error(request, 'Image is not uploaded!')
+                return redirect('items:product_manage')
+            elif brand.strip() == '':
+                messages.error(request, 'Brand is not given!')
+                return redirect('items:product_manage')
+            elif category_name.strip() == '':
+                messages.error(request, 'Category is not given!')
+                return redirect('items:product_manage')
             
-            # update = get_object_or_404(Products,id=product_id)
-            # update.name = name
-            # update.description = description
-            # update.image = product_image
-            # update.brand = brand_instance
-            # update.category = category_instance
+             # Create an instance of Brand
+            brand_instance = Brand.objects.get(brand_name=brand)
+             # Create an instance of category
+            category_instance = Category.objects.get(name = category_name)
+            
+            update = get_object_or_404(Products,id=product_id)
+            update.name = name
+            update.description = description
+            update.image = product_image
+            update.brand = brand_instance
+            update.category = category_instance
         
-            # update.save()
-            # messages.success(request, 'Product updated successfully')
-            # return redirect('items:product_manage')
+            update.save()
+            messages.success(request, 'Product updated successfully')
+            return redirect('items:product_manage')
         
         
         
